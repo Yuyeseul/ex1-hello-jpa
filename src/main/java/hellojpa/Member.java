@@ -17,7 +17,7 @@ public class Member {
 //    private Long teamId;
 
     // 연관관계 매핑
-    @ManyToOne
+    @ManyToOne // 연관관계의 주인 (등록 수정)
     @JoinColumn(name = "TEAM_ID")
     private Team team;
 
