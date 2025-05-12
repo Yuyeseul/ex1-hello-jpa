@@ -3,21 +3,18 @@ package hellojpa;
 import jakarta.persistence.*;
 
 @Entity
-@SequenceGenerator(name = "member_seq_generator",
-        sequenceName = "member_seq", // 매핑할 데이터베이스 시퀀스 이름
-        initialValue = 1, allocationSize = 50)
 public class Member {
 
     @Id // 기본키 매핑 - IDENTITY, SEQUENCE(@SequenceGenerator), TABLE(@TableGenerator), AUTO
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-            generator = "member_seq_generator")
+    @GeneratedValue
+    @Column(name = "MEMBER_ID")
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "USERNAME")
     private String username;
 
-    public Member() {
-    }
+    @Column(name = "TEAM_ID")
+    private Long teamId;
 
     public Long getId() {
         return id;
@@ -35,5 +32,11 @@ public class Member {
         this.username = username;
     }
 
+    public Long getTeamId() {
+        return teamId;
+    }
 
+    public void setTeamId(Long teamId) {
+        this.teamId = teamId;
+    }
 }
