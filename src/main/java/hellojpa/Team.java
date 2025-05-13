@@ -14,8 +14,14 @@ public class Team {
 
     private String name;
 
-    @OneToMany(mappedBy = "team") // 연관관계 주인 아님 -> mappedBy 사용 (읽기)
-    List<Member> members = new ArrayList<Member>();
+    // 연관관계 매핑 <일대다>
+    @OneToMany
+    @JoinColumn(name = "TEAM_ID")
+    private List<Member> members = new ArrayList<>();
+
+    // 연관관계 매핑 <다대일 양방향>
+//    @OneToMany(mappedBy = "team") // 연관관계 주인 아님 -> mappedBy 사용 (읽기)
+//    List<Member> members = new ArrayList<Member>();
 
     public Long getId() {
         return id;
