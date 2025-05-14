@@ -13,6 +13,11 @@ public class Member {
     @Column(name = "USERNAME")
     private String username;
 
+    // 연관관계 매핑 <일대일>
+    @OneToOne
+    @JoinColumn(name = "LOCKER_ID")
+    private Locker locker;
+
     // 연관관계 매핑 <일대다 양방향>
     @ManyToOne
     @JoinColumn(name = "TEAM_ID", insertable = false, updatable = false) // 연관관계 주인 아님 -> 읽기 전용 필드 사용
