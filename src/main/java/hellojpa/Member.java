@@ -2,6 +2,9 @@ package hellojpa;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Member {
 
@@ -22,6 +25,15 @@ public class Member {
     @ManyToOne
     @JoinColumn(name = "TEAM_ID", insertable = false, updatable = false) // 연관관계 주인 아님 -> 읽기 전용 필드 사용
     private Team team;
+
+    // 연관관계 매핑 <다대다>
+//    @ManyToMany
+//    @JoinTable(name = "MEMBER_PRODUCT")
+//    private List<Product> products = new ArrayList<>();
+
+    // 연관관계 매핑 <다대다 - 일대다>
+    @OneToMany(mappedBy = "member")
+    private List<MemberProduct> memberProducts = new ArrayList<>();
 
 //    // 연관관계 매핑 <다대일>
 //    @ManyToOne // 연관관계의 주인 (등록 수정)
