@@ -22,18 +22,18 @@ public class JpaMain {
 
             em.persist(movie);
 
-            Book book = new Book();
-            book.setAuthor("zzz");
-            book.setIsbn("ll");
-            book.setName("book");
-            book.setPrice(10000);
+            Movie movie2 = new Movie();
+            movie2.setDirector("aaa");
+            movie2.setActor("bbb");
+            movie2.setName("무비");
+            movie2.setPrice(10000);
 
-            em.persist(book);
+            em.persist(movie2);
 
             em.flush(); // 영속성 컨텍스트 -> db 반영
             em.clear(); // 영속성 컨텍스트 초기화
 
-            Movie findMovie = em.find(Movie.class, movie.getId());
+            Movie findMovie = em.find(Movie.class, movie2.getId());
             System.out.println("findMovie = " + findMovie);
 
             tx.commit();
