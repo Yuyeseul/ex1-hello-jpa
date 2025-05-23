@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Member {
+public class Member extends BaseEntity {
 
     @Id // 기본키 매핑 - IDENTITY, SEQUENCE(@SequenceGenerator), TABLE(@TableGenerator), AUTO
     @GeneratedValue
