@@ -14,8 +14,8 @@ public class Member extends BaseEntity {
     private String username;
 
     // 연관관계 매핑 <일대다 양방향>
-    @ManyToOne
-    @JoinColumn(name = "TEAM_ID", insertable = false, updatable = false) // 연관관계 주인 아님 -> 읽기 전용 필드 사용
+    @ManyToOne(fetch = FetchType.LAZY) // 지연로딩 lazy 즉시로딩 eager
+    @JoinColumn
     private Team team;
 
     // 연관관계 매핑 <다대다>

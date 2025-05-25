@@ -1,7 +1,8 @@
 package hellojpa;
 
 import jakarta.persistence.*;
-import org.hibernate.Hibernate;
+
+import java.util.List;
 
 public class JpaMain {
 
@@ -15,22 +16,31 @@ public class JpaMain {
 
         try {
 
-            Member member = new Member();
-            member.setUsername("userA");
+            Team team = new Team();
+            team.setName("teamA");
+            em.persist(team);
 
-            em.persist(member);
+            Team team2 = new Team();
+            team.setName("teamB");
+            em.persist(team2);
+
+            Member member1 = new Member();
+            member1.setUsername("member1");
+            member1.setTeam(team);
+            em.persist(member1);
+
+            Member member2 = new Member();
+            member2.setUsername("member2");
+            member2.setTeam(team2);
+            em.persist(member2);
 
             em.flush(); // 영속성 컨텍스트 -> db 반영
             em.clear(); // 영속성 컨텍스트 초기화
 
-//            Member findMember = em.find(Member.class, member.getId());
-            Member refMember = em.getReference(Member.class, member.getId()); // proxy 객체 조회
-            System.out.println("refMember : " + refMember.getClass()); // proxy
+            List<Member> members = em.createQuery("select m from Member m", Member.class).getResultList();
 
-//            System.out.println("refMember instanceof Member = " + (refMember instanceof Member)); // 타입 체크 시 instanceof 사용
-//            refMember.getUsername(); // proxy 초기화 됨
-//            System.out.println("isLoaded = " + emf.getPersistenceUnitUtil().isLoaded(refMember)); // 프록시 인스턴스의 초기화 여부
-//            Hibernate.initialize(refMember); // 강제 초기화
+            // sql : select * from member
+            // sql : select * from team where team_id = xx
 
             tx.commit();
         } catch (Exception e) {
