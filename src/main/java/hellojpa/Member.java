@@ -2,9 +2,6 @@ package hellojpa;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 public class Member extends BaseEntity {
 
@@ -15,11 +12,6 @@ public class Member extends BaseEntity {
 
     @Column(name = "USERNAME")
     private String username;
-
-    // 연관관계 매핑 <일대일>
-    @OneToOne
-    @JoinColumn(name = "LOCKER_ID")
-    private Locker locker;
 
     // 연관관계 매핑 <일대다 양방향>
     @ManyToOne
@@ -32,8 +24,8 @@ public class Member extends BaseEntity {
 //    private List<Product> products = new ArrayList<>();
 
     // 연관관계 매핑 <다대다 - 일대다>
-    @OneToMany(mappedBy = "member")
-    private List<MemberProduct> memberProducts = new ArrayList<>();
+//    @OneToMany(mappedBy = "member")
+//    private List<MemberProduct> memberProducts = new ArrayList<>();
 
 //    // 연관관계 매핑 <다대일>
 //    @ManyToOne // 연관관계의 주인 (등록 수정)
@@ -63,5 +55,13 @@ public class Member extends BaseEntity {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }
