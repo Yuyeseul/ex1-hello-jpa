@@ -16,21 +16,15 @@ public class JpaMain {
 
         try {
 
-            Child child1 = new Child();
-            Child child2 = new Child();
+            Member member = new Member();
+            member.setUsername("ys");
+            member.setHomeAddress(new Address("city", "street", "12345"));
+            member.setWorkPeriod(new Period());
 
-            Parent parent = new Parent();
-            parent.addChild(child1);
-            parent.addChild(child2);
-
-            em.persist(parent);
+            em.persist(member);
 
             em.flush(); // 영속성 컨텍스트 -> db 반영
             em.clear(); // 영속성 컨텍스트 초기화
-
-            Parent findParent = em.find(Parent.class, parent.getId());
-//            findParent.getChildList().remove(0);
-            em.remove(findParent);
 
             tx.commit();
         } catch (Exception e) {

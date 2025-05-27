@@ -1,0 +1,32 @@
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+/shelf/
+workspace.xml
+/httpRequests/
+dataSources/
+dataSources.local.xml
+
+# Build output
+/target/
+/build/
+
+# Maven
+.log
+dependency-reduced-pom.xml
+release.properties
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Others
+*.class
+*.jar
+*.war
+*.ear
+
+# VSCode
+.vscode/
