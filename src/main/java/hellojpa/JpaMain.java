@@ -16,10 +16,17 @@ public class JpaMain {
 
         try {
 
+            Address address = new Address("city", "street", "12345");
+
             Member member = new Member();
             member.setUsername("ys");
-            member.setHomeAddress(new Address("city", "street", "12345"));
+            member.setHomeAddress(address);
             member.setWorkPeriod(new Period());
+
+            Address newAddress = new Address("city2", address.getStreet(), address.getZipcode());
+            member.setHomeAddress(newAddress);
+
+//            member.getHomeAddress().setCity("city2"); // side effect 발생
 
             em.persist(member);
 
